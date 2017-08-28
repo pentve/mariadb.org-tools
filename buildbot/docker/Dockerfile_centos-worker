@@ -35,21 +35,11 @@ RUN pip install virtualenv && \
     pip --no-cache-dir install twisted[tls] && \
     pip install /usr/src/buildbot-worker
 
-RUN useradd -ms /bin/bash buildbot && chown -R buildbot /buildbot
-
-USER buildbot
-WORKDIR /buildbot
-
-CMD ["/usr/local/bin/dumb-init", "twistd", "-ny", "buildbot.tac"]
-
-USER root
-
 RUN yum-builddep -y mariadb
 RUN yum install -y glibc-devel
 
-# USER buildbot
-# WORKDIR /buildbot
-# RUN buildbot-worker create-worker . bb04.mariadb.net:9989 centos-worker f02428f2r2
-# ENTRYPOINT ["/usr/local/bin/buildbot-worker"]
-# CMD ["start", "--nodaemon"]
+RUN useradd -ms /bin/bash buildbot && chmod 755 /buildbot && chown -R buildbot:buildbot /buildbot
 
+USER buildbot
+WORKDIR /buildbot
+CMD ["/usr/local/bin/dumb-init", "twistd", "-ny", "buildbot.tac"]

@@ -1,5 +1,5 @@
-for i in $(docker images -a -q $1)
-do
-    echo removing image $i
-    docker rmi -f $i
-done
+#!/bin/bash
+
+docker stop $(docker ps -a -q)
+docker rm -f -v $(docker ps -a -q)
+docker rmi -f $(docker images -q $1)
