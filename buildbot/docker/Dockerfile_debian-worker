@@ -20,8 +20,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get -y install software-properties-common python-software-properties lsb-release
 
-RUN add-apt-repository "deb http://security.debian.org $(lsb_release --codename | cut -f2)/updates main contrib" -s
-RUN add-apt-repository "deb http://ftp.debian.org/debian $(lsb_release --codename | cut -f2) main contrib" -s
+RUN add-apt-repository "deb http://security.debian.org $(lsb_release -c | awk '{print $2}')/updates main contrib" -s
+RUN add-apt-repository "deb http://ftp.debian.org/debian $(lsb_release -c | awk '{print $2}') main contrib" -s
 
 RUN apt-get update && apt-get -y upgrade && \
     apt-get -y install -q apt-utils build-essential git python-dev libffi-dev libssl-dev curl
