@@ -36,7 +36,7 @@ RUN pip install virtualenv && \
     pip install /usr/src/buildbot-worker
 
 RUN yum-builddep -y mariadb
-RUN yum install -y glibc-devel
+RUN yum install -y glibc-devel libevent-devel uuid-devel memkind-devel
 
 RUN useradd -ms /bin/bash buildbot && chmod 755 /buildbot && chown -R buildbot:buildbot /buildbot
 

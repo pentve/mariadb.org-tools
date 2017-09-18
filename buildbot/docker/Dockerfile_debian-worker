@@ -42,7 +42,7 @@ RUN useradd -ms /bin/bash buildbot && chmod 755 /buildbot && chown -R buildbot:b
 
 RUN apt-get update && apt-get -y build-dep mariadb-server
 RUN apt-get update && apt-get -y install libcurl4-openssl-dev pkg-config libpthread-stubs0-dev debhelper dh-make dpkg-dev devscripts
-RUN apt-get -y install dh-systemd dpatch gdb libcrack2-dev libkrb5-dev libnuma-dev libsnappy-dev libsystemd-dev libxml2-dev unixodbc-dev uuid-dev
+RUN apt-get -y install dh-systemd dpatch gdb libcrack2-dev libkrb5-dev libnuma-dev libsnappy-dev libsystemd-dev libxml2-dev unixodbc-dev uuid-dev libevent-dev gawk autoconf libstemmer-dev libc6 libc6-dev libjemalloc-dev hardening-wrapper
 
 USER buildbot
 WORKDIR /buildbot
