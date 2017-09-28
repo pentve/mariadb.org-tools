@@ -54,7 +54,7 @@ echo Replacing \"$dockerfile_target\" with \"$dockerfile_source\"
 cp $dockerfile_source $build_dir/worker/Dockerfile || clean_and_exit 1
 
 echo Building Docker image \"$worker_name\"
-sudo docker build $build_dir/worker -t $worker_name || clean_and_exit 1
+sudo docker build --no-cache $build_dir/worker -t $worker_name || clean_and_exit 1
 
 echo Done
 clean_and_exit 0
